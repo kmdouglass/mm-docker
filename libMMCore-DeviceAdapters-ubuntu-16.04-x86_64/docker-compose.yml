@@ -1,0 +1,10 @@
+---
+version: '3.4'
+services:
+  mm-build:
+    build: .
+    image: kmdouglass/micro-manager:libMMCore-DeviceAdapters-ubuntu-16.04-x86_64
+    user: ${UID}
+    volumes:
+      - ${CCACHE_HOST_DIR}:/.ccache
+      - ${MM_BASE_DIR}:/micro-manager
