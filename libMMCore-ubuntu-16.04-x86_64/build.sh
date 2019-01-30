@@ -12,6 +12,14 @@ cd /micro-manager/micro-manager
     --disable-install-dependency-jars \
     --with-java="no"
 
+if [ -n "${BUILD_DEVICE_ADAPTERS}" ];
+then
+    make -j "${NUM_CORES}"
+    make install
+else
+    (cd MMDevice; make -j "${NUM_CORES}")
+fi
+
 cd MMCore
 make -j "${NUM_CORES}"
 mkdir -p /micro-manager/build/lib/micro-manager

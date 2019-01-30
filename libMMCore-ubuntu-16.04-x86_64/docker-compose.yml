@@ -3,7 +3,11 @@ version: '3.4'
 services:
   mm-build:
     build: .
-    image: kmdouglass/micro-manager:libMMCore-ubuntu-16.04-x86_64
+    environment:
+      - BUILD_DEVICE_ADAPTERS=${BUILD_DEVICE_ADAPTERS}
+      - CXXFLAGS=${CXXFLAGS}
+      - NUM_CORES=${NUM_CORES}
+    image: kmdouglass/micro-manager:libMMCore-DeviceAdapters-ubuntu-16.04-x86_64
     user: ${UID}
     volumes:
       - ${CCACHE_HOST_DIR}:/.ccache
